@@ -57,7 +57,10 @@ OPTIONS_SCHEMA = vol.Schema(
 )
 
 
-def _options_suggested_values(handler: SchemaCommonFlowHandler) -> dict[str, Any]:
+async def _options_suggested_values(handler: SchemaCommonFlowHandler) -> dict[str, Any]:
+    # no real I/O here, but keep this awaited no-op so the function is a proper coroutine
+    await handler.hass.async_add_executor_job(lambda: None)
+
     parent_handler = cast(SchemaOptionsFlowHandler, handler.parent_handler)
     suggested_values = copy.deepcopy(dict(parent_handler.config_entry.data))
     suggested_values.update(parent_handler.options)
