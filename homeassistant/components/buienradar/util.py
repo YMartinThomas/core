@@ -69,8 +69,8 @@ class BrData:
         self.coordinates = coordinates
         self.timeframe = timeframe
         self.unsub_schedule_update: CALLBACK_TYPE | None = None
-
-    async def update_devices(self):
+        
+        def update_devices(self):
         """Update all devices/sensors."""
         if not self.devices:
             return
