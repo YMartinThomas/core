@@ -45,7 +45,8 @@ async def async_setup_entry(
 
     latitude = config.get(CONF_LATITUDE, hass.config.latitude)
     longitude = config.get(CONF_LONGITUDE, hass.config.longitude)
-
+    
+    await hass.async_add_executor_job(lambda: None)
     async_add_entities([BuienradarCam(latitude, longitude, delta, country)])
 
 
